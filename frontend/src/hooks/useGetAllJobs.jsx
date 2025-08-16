@@ -4,6 +4,8 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
+
+//get all jobs custom hook
 const useGetAllJobs = () => {
   const dispatch = useDispatch();
 
