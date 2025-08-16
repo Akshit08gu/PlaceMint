@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
 
-//job description
+//job description component
+
 const JobDescription = () => {
   const params = useParams();  //used to get the id
   const jobId = params.id;
