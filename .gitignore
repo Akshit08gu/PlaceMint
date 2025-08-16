@@ -20,3 +20,7 @@ yarn-error.log*
 
 # Misc
 .DS_Store
+
+backend/node_modules/
+frontend/node_modules/
+
