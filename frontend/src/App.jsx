@@ -11,6 +11,9 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Profile from "./components/Profile";
 import JobDescription from "./components/JobDescription";
+import Companies from "./components/admin/companies";
+import CompanyCreate from "./components/admin/CompanyCreate";
+import CompanySetup from "./components/admin/CompanySetup";
 
 const appRouter = createBrowserRouter([
 
@@ -41,6 +44,20 @@ const appRouter = createBrowserRouter([
   {
     path:'/profile',
     element:<Profile/>
+  },
+
+  //admin ke liy yha se start hoga
+  {
+    path:'/admin/companies',
+    element:<Companies/>
+  },
+  {
+    path:'/admin/companies/create',
+    element:<CompanyCreate/>
+  },
+  {
+    path:'/admin/companies/:id',
+    element:<CompanySetup/>
   },
 ])
 

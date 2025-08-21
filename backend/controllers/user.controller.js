@@ -7,6 +7,8 @@ import cloudinary from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
 
+
+
     try {
         const { fullname, email, phoneNumber, password, role } = req.body;
 
@@ -37,7 +39,7 @@ export const register = async (req, res) => {
             phoneNumber,
             password: hashedPassword,
             role,
-            profile:{
+            profile: {
                 profilePhoto: cloudResponse.secure_url,
             }
         });
@@ -49,6 +51,11 @@ export const register = async (req, res) => {
 
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: 'Internal server error',
+            success: false,
+            error: error.message
+        });
     }
 }
 
@@ -198,8 +205,7 @@ export const updateProfile = async (req, res) => {
         //     existingUser.profile.resumeOriginalName = file.originalname;
         // }
 
-        if(cloudResponse)
-        {
+        if (cloudResponse) {
             existingUser.profile.resume = cloudResponse.secure_url;
             existingUser.profile.resumeOriginalName = file.originalname;
         }
