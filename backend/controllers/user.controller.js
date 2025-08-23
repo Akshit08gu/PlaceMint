@@ -119,7 +119,7 @@ export const login = async (req, res) => {
             profile: existingUser.profile
         }
 
-        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'strict' }).json({
+        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, secure: false, sameSite: 'lax' }).json({
             message: `Welcome back ${existingUser.fullname}`,
             existingUser,
             success: true,
@@ -133,7 +133,11 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
 
     try {
-        return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+        return res.status(200).cookie("token", "", {
+            maxAge: 0, httpOnly: true,
+            secure: false,
+            sameSite: "none"
+        }).json({
             message: "Logged out successfully.",
             success: true
         })
