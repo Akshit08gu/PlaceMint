@@ -12,20 +12,29 @@ dotenv.config({});
 
 const app = express();
 
-app.get("/home",(req,res)=>{
-    return res.status(200).json({
-        messsage:"I am coming fromm backend",
-        success:"true"
-    })
+
+// ✅ Health check route
+app.get("/health", (req, res) => {
+  return res.status(200).json({
+    status: "ok",
+    message: "Server is healthy 🚀",
+  });
+});
+
+app.get("/home", (req, res) => {
+  return res.status(200).json({
+    messsage: "I am coming fromm backend",
+    success: "true"
+  })
 })
 
 //middleware
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 const corsOptions = {
-    origin:["http://localhost:5173", "http://localhost:8000"],
-    credentials:true,
+  origin: ["http://localhost:5173", "http://localhost:8000"],
+  credentials: true,
 }
 app.use(cors(corsOptions));
 
