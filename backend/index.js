@@ -37,10 +37,8 @@ app.use(cookieparser());
 //   credentials: true,
 // }
 // app.use(cors(corsOptions));
-app.use(cors({
-  origin: "*",        // allow all origins
-  credentials: true,  // allow cookies/auth headers
-}));
+app.use(cors({ origin: "*" }));
+
 const PORT = process.env.PORT || 3000;
 
 //api's
