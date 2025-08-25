@@ -1,6 +1,5 @@
 import "tailwindcss";
 import './App.css';
-import Navbar from "./components/shared/navbar";
 import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/auth/login";
 import Signup from "./components/auth/signup";
