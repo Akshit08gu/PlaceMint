@@ -29,7 +29,7 @@ const Job = ({job}) => {
       <div className="flex items-center gap-2 my-2">
         <Button className="p-4" variant="outline" size="icon">
           <Avatar>
-            <AvatarImage src="https://i.fbcd.co/products/resized/resized-750-500/logo-set-26-03-78a1ebac05279e80ffef88d7519750a7eb3a0b200bd81594f0bca5c64fa1bf97.jpg" />
+            <AvatarImage src={job?.company?.logo} />
           </Avatar>
         </Button>
         <div>
@@ -45,7 +45,7 @@ const Job = ({job}) => {
       <div className='flex items-center gap-2 mt-2'>
         <Badge className='text-blue-700 font-bold' variant="ghost">{job?.position} Positions</Badge>
         <Badge className='text-[#F83002]' variant="ghost">{job?.jobType}</Badge>
-        <Badge className='text-[#7209b7]' variant="ghost">{job?.salary}</Badge>
+        <Badge className='text-[#7209b7]' variant="ghost">{job?.salary}LPA</Badge>
     </div>
     <div className="flex items-center gap-4 mt-4">
         <Button onClick={() => navigate(`/description/${job?._id}`)} className=' cursor-pointer bg-[#1E293B] hover:bg-[#0F172A] hover:shadow-lg text-white border-[#1E293B] transition-all duration-200 hover:scale-105 transform' variant='outline'>Details</Button>
