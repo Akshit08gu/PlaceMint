@@ -32,12 +32,12 @@ app.get("/home", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
-// const corsOptions = {
-//   origin:  "https://placemint-2.onrender.com",
-//   credentials: true,
-// }
-// app.use(cors(corsOptions));
-app.use(cors({ origin: "*" }));
+const corsOptions = {
+  origin:  "http://localhost:5173",
+  credentials: true,
+}
+app.use(cors(corsOptions));
+// app.use(cors({ origin: "*" }));
 
 const PORT = process.env.PORT || 3000;
 
