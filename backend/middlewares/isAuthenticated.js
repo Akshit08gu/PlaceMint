@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 const isAuthenticated = async (req,res,next) => {
 
     try {
-        // const token = req.cookies.token || (req.headers.authorization?.split(" ")[1]);
-        const token = localStorage.getItem("token");
+        const token = req.cookies.token || (req.headers.authorization?.split(" ")[1]);
+        // const token = localStorage.getItem("token");
 
         console.log(token.authorization);
         if(!token)
