@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 const isAuthenticated = async (req,res,next) => {
 
+    console.log("isAuthenticated middleware called");
     try {
         const token = req.cookies.token || (req.headers.authorization?.split(" ")[1]);
 
