@@ -1,5 +1,5 @@
 import express from "express";
-import cookieparser from "cookie-parser";
+import cookieParser from "cookie-parser";
 import mongoose from 'mongoose';
 import cors from "cors";
 import dotenv from "dotenv";
@@ -31,7 +31,7 @@ app.get("/home", (req, res) => {
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieparser());
+app.use(cookieParser());
 const corsOptions = {
   origin: true,
   credentials: true,
