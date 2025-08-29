@@ -19,9 +19,9 @@ export const register = async (req, res) => {
             });
         };
 
-        const file = req.file;
-        const fileUri = getDataUri(file);
-        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+        // const file = req.file;
+        // const fileUri = getDataUri(file);
+        // const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -29,6 +29,13 @@ export const register = async (req, res) => {
                 message: 'User already exist with this email',
                 success: false,
             })
+        }
+
+        // Handle profile photo (optional)
+        let cloudResponse = { secure_url: "" }; // default empty string
+        if (req.file) {
+            const fileUri = getDataUri(req.file);
+            cloudResponse = await cloudinary.uploader.upload(fileUri.content);
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -58,6 +65,16 @@ export const register = async (req, res) => {
         });
     }
 }
+
+//changesssss
+// Cookie options (works for both localhost & Render)
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day
+};
+
 
 export const login = async (req, res) => {
 
@@ -118,8 +135,8 @@ export const login = async (req, res) => {
             role: existingUser.role,
             profile: existingUser.profile
         }
-       console.log(token);
-        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none' }).json({
+        console.log(token);
+        return res.status(200).cookie("token", token, cookieOptions).json({
             message: `Welcome back ${existingUser.fullname}`,
             existingUser,
             success: true,
@@ -134,9 +151,7 @@ export const logout = async (req, res) => {
 
     try {
         return res.status(200).cookie("token", "", {
-            maxAge: 0, httpOnly: true,
-            secure: false,
-            sameSite: "none"
+            ...cookieOptions, maxAge: 0
         }).json({
             message: "Logged out successfully.",
             success: true
