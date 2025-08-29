@@ -1,5 +1,5 @@
 import { User } from "../models/user.model.js";
-import bcrypt from "bcryptjs";
+import bcrypt, { compareSync } from "bcryptjs";
 import jwt from "jsonwebtoken"
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
@@ -118,7 +118,7 @@ export const login = async (req, res) => {
             role: existingUser.role,
             profile: existingUser.profile
         }
-
+       console.log(token);
         return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, secure: false, sameSite: 'lax' }).json({
             message: `Welcome back ${existingUser.fullname}`,
             existingUser,

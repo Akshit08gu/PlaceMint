@@ -2,14 +2,14 @@ import jwt from "jsonwebtoken";
 
 const isAuthenticated = async (req,res,next) => {
 
-    console.log("isAuthenticated middleware called");
     try {
         const token = req.cookies.token || (req.headers.authorization?.split(" ")[1]);
-
+        
+        console.log(token);
         if(!token)
-        {
-            return res.status(401).json({
-                message: "User not authenticated",
+            {
+                return res.status(401).json({
+                message: `User not authenticated ${token}`,
                 success: false,
             })
         }
