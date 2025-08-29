@@ -32,19 +32,12 @@ app.get("/home", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
-// const corsOptions = {
-//   origin: true,
-//   credentials: true,
-// }
-// app.use(cors(corsOptions));
+const corsOptions = {
+  origin: true,
+  credentials: true,
+}
+app.use(cors(corsOptions));
 // app.use(cors({ origin: "*" }));
-
-
-app.use(cors({
-  origin: "*",       // allow all origins
-  credentials: false // must be false if origin is "*"
-}));
-
 
 const PORT = process.env.PORT || 3000;
 
