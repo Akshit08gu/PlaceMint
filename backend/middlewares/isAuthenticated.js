@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 const isAuthenticated = async (req,res,next) => {
 
     try {
-        const token = req.cookies.token || (req.headers.authorization?.split(" ")[1]);
+        // const token = req.cookies.token || (req.headers.authorization?.split(" ")[1]);
+        const token = req.cookies?.token || (req.headers.authorization?.split(" ")[1]);
         // const token = localStorage.getItem("token");
 
-        console.log(token.authorization);
         if(!token)
             {
                 return res.status(401).json({
@@ -15,7 +15,8 @@ const isAuthenticated = async (req,res,next) => {
             })
         }
 
-        const decode = await jwt.verify(token, process.env.SECRET_KEY);
+        // const decode = await jwt.verify(token, process.env.SECRET_KEY);
+        const decode = jwt.verify(token, process.env.SECRET_KEY);
 
         if(!decode){
             return res.status(401).json({
