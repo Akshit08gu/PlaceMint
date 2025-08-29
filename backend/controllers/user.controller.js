@@ -120,7 +120,7 @@ export const login = async (req, res) => {
         }
        console.log(token);
         return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, secure: false, sameSite: 'lax' }).json({
-            message: `Welcome back ${existingUser.fullname}`,
+            message: `Welcome back ${existingUser.fullname,token}`,
             existingUser,
             success: true,
         })
