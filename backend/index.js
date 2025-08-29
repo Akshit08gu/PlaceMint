@@ -52,7 +52,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Add this line to handle preflight requests
-app.options('*', cors(corsOptions));
+// app.options('*', cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 
