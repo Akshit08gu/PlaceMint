@@ -39,13 +39,25 @@ app.use(cookieParser());
 // app.use(cors(corsOptions));
 // app.use(cors({ origin: "*" }));
 
-const corsOptions = {
-  origin:process.env.FRONTEND_URL,
+const allowedOrigins = [
+  "http://localhost:5173", // local frontend
+  "https://placemint-frontend.onrender.com",
+  process.env.FRONTEND_URL,
+   // deployed frontend
+];
+
+app.use(cors({
+  origin: allowedOrigins,
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
-}
-app.use(cors(corsOptions));
+}));
+
+// const corsOptions = {
+//   origin:process.env.FRONTEND_URL,
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
+// }
+// app.use(cors(corsOptions));
 
 // Add this line to handle preflight requests
 // app.options('*', cors(corsOptions));
